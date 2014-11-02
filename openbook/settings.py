@@ -22,6 +22,10 @@ settings = dict()
 settings['BASEDIR'] = BASEDIR
 settings['TEMPLATEDIR'] = TEMPLATEDIR
 settings['STATICDIR'] = STATICDIR
+#tornado
+settings['tornado'] = dict()
+settings['tornado']['debug'] = DEBUG
+settings['tornado']['autoreload'] = DEBUG
 #debug
 settings['DEBUG'] = DEBUG
 #jinja2

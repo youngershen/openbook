@@ -6,22 +6,21 @@
 import tornado.ioloop
 import tornado.web
 from settings import settings
-from mixins import Jinja2AppMixin
+from openbook.mixins.Jinja2Mixins import Jinja2AppMixin
+from openbook.mixins.Jinja2Mixins import Jinja2HandlerMixin
 
 class MainApplication(Jinja2AppMixin, tornado.web.Application):
     pass
 
-class MainHandler(tornado.web.RequestHandler):
+class MainHandler(Jinja2HandlerMixin, tornado.web.RequestHandler):
     @tornado.web.asynchronous
     def get(self):
-        self.write("hello world!")
-        name = self.get_argument("name")
-        self.write("</br> my name is  {name}".format(name=name))
+        self.render_to_response("index.html", **dict())
         self.finish()
 
-application = MainApplication([
-    (r"/", MainHandler),
-    ], **settings)
+application = MainApplication(
+        [(r"/", MainHandler),],
+        **settings['tornado'])
 
 def main():
     application.listen(9999)
