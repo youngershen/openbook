@@ -26,6 +26,7 @@ settings['STATICDIR'] = STATICDIR
 settings['tornado'] = dict()
 settings['tornado']['debug'] = DEBUG
 settings['tornado']['autoreload'] = DEBUG
+settings['tornado']['static_path'] = STATICDIR
 #debug
 settings['DEBUG'] = DEBUG
 #jinja2

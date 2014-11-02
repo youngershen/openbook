@@ -8,3 +8,5 @@ jinja2==2.7.3
 SQLAlchemy==0.9.8
 #mysqldb
 -e git+git@github.com:youngershen/MySQLdb1.git#egg=MySQLdb
+#python-cjson
+python-cjson==1.1.0

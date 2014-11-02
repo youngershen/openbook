@@ -12,12 +12,11 @@ class Jinja2AppMixin(object):
     def __init__(self, *args, **kwargs):
         super(Jinja2AppMixin, self).__init__(*args, **kwargs)
         self.jinja2_env = Environment(**settings['JINJA2']) 
-        print self.jinja2_env
 
 
 
 class Jinja2HandlerMixin(object):
-    def render_to_response(self, template_name, **context):
+    def render_to_response(self, template_name, context):
         default_context = {
             'handler': self,
             'request': self.request,
@@ -36,7 +35,7 @@ class Jinja2HandlerMixin(object):
         }
         context.update(default_context)
         context.update(escape_context)
-        context.update(self.ui) # Enabled tornado UI modules and methods.
+        context.update(self.ui) 
         template = self.application.jinja2_env.get_template(
             template_name)
         html = template.render(**context)
