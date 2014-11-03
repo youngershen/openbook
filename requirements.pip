@@ -10,3 +10,5 @@ SQLAlchemy==0.9.8
 -e git+git@github.com:youngershen/MySQLdb1.git#egg=MySQLdb
 #python-cjson
 python-cjson==1.1.0
+#sqlalchemy-migrate
+sqlalchemy-migrate==0.9.2

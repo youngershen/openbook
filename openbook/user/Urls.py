@@ -5,4 +5,4 @@
 
 from openbook.user.IndexViews import UserIndexHandler
 
-urls = [('/index/[0-9]+', UserIndexHandler),]
+urls = [('/index', UserIndexHandler),]

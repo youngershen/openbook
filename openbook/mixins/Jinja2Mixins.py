@@ -2,7 +2,6 @@
 #-*- coding: utf-8 -*-
 # author : younger shen
 # email  : younger.x.shen@gmail.com
-
 import sys
 from jinja2 import Environment
 from openbook.settings import settings
@@ -14,6 +13,12 @@ class Jinja2AppMixin(object):
         self.jinja2_env = Environment(**settings['JINJA2']) 
 
 
+class TemplateLocateMixin(object):
+    def get_module_template(self, template_name):
+        if self.module_name:
+            return self.module_name + "/" + template_name
+        else:
+            return template_name
 
 class Jinja2HandlerMixin(object):
     def render_to_response(self, template_name, context):
@@ -36,7 +41,9 @@ class Jinja2HandlerMixin(object):
         context.update(default_context)
         context.update(escape_context)
         context.update(self.ui) 
+        
+        template_full_name = self.get_module_template(template_name)
         template = self.application.jinja2_env.get_template(
-            template_name)
+            template_full_name)
         html = template.render(**context)
         self.write(html)

@@ -17,11 +17,18 @@ STATICDIR = BASEDIR + "/static/"
 
 DEBUG = True
 
-#tornado settings
+#settings
 settings = dict()
 settings['BASEDIR'] = BASEDIR
 settings['TEMPLATEDIR'] = TEMPLATEDIR
 settings['STATICDIR'] = STATICDIR
+settings['DATABASE']  = 'mysql'
+settings['DBUSER']    = 'root'
+settings['DBPASS']    = 'root'
+settings['DBNAME']    = 'openbook_dev'
+settings['DBPREFIX']  = 'ob_'
+settings['DBHOST']    = '127.0.0.1'
+settings['DBPORT']    = '3306'
 #tornado
 settings['tornado'] = dict()
 settings['tornado']['debug'] = DEBUG
@@ -34,3 +41,7 @@ settings['JINJA2'] = dict()
 settings['JINJA2']['loader'] = FileSystemLoader(TEMPLATEDIR) 
 settings['JINJA2']['auto_reload'] = DEBUG
 settings['JINJA2']['autoescape'] = True
+#db config
+settings['DBCONFIG'] = dict()
+settings['DBCONFIG']['encoding'] = 'utf8'
+settings['DBCONFIG']['echo'] = DEBUG

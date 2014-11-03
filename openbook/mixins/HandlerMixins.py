@@ -6,6 +6,7 @@
 import cjson
 from tornado.web import RequestHandler
 from openbook.mixins.Jinja2Mixins import Jinja2HandlerMixin
+from openbook.mixins.Jinja2Mixins import TemplateLocateMixin
 
 class JsonHandlerMixin(object):
     
@@ -13,5 +14,5 @@ class JsonHandlerMixin(object):
         json = cjson.encode(context)
         self.write(json)
 
-class DefaultHandler(Jinja2HandlerMixin, RequestHandler):
+class DefaultHandler(TemplateLocateMixin, JsonHandlerMixin, Jinja2HandlerMixin, RequestHandler):
     pass
