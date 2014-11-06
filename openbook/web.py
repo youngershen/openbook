@@ -7,7 +7,6 @@ import tornado.ioloop
 import tornado.web
 from settings import settings
 from openbook.mixins.Jinja2Mixins import Jinja2AppMixin
-from openbook.mixins.Jinja2Mixins import Jinja2HandlerMixin
 from openbook.urls import urls
 
 class MainApplication(Jinja2AppMixin, tornado.web.Application):
