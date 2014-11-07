@@ -2,7 +2,6 @@ from sqlalchemy import *
 from migrate import *
 
 meta = MetaData()
-
 user = Table(
         'user', meta,
         Column('id', Integer, primary_key=True)

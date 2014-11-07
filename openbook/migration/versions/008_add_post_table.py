@@ -12,7 +12,7 @@ post = Table(
         'post', meta,
         Column('id', Integer, primary_key=True),
         Column('title', String(255), index=True, nullable=True, default=""),
-        Column('content', TEXT, index=True, nullable=False),
+        Column('content', TEXT, nullable=False),
         Column('reply_id', Integer, ForeignKey('post.id'), nullable=True),
         Column('author', Integer, ForeignKey('user.id'), nullable=False),
         Column('update_time', TIMESTAMP),
