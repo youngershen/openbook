@@ -34,6 +34,9 @@ settings['DBPORT']    = '3306'
 settings['tornado'] = dict()
 settings['tornado']['debug'] = DEBUG
 settings['tornado']['autoreload'] = DEBUG
+settings['tornado']['login_url'] = '/account/login'
+settings['tornado']['xsrf_cookies'] = True
+settings['tornado']['cookie_secret'] = "i will be right here waiting for you"
 settings['tornado']['static_path'] = STATICDIR
 #debug
 settings['DEBUG'] = DEBUG

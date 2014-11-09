@@ -30,3 +30,13 @@ class IndexHandler(DefaultHandler):
 
     def post(self):
         pass
+
+
+class LoginHandler(DefaultHandler):
+    module_name='account'
+
+    def get(self):
+        self.write("account/login")
+
+    def post(self):
+        pass

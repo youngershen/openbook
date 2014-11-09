@@ -4,6 +4,8 @@
 # email  : younger.x.shen@gmail.com
 
 from openbook.account.views.IndexViews import IndexHandler
+from openbook.account.views.IndexViews import LoginHandler
 from openbook.account.apis.Apis import CheckUserNameAPI
-urls = [('/index', IndexHandler),]
+urls  = [('/index', IndexHandler),]
 urls += [('/check_username_api', CheckUserNameAPI),]
+urls += [('/login', LoginHandler),]
