@@ -9,10 +9,14 @@ from openbook.mixins.Jinja2Mixins import Jinja2HandlerMixin
 from openbook.mixins.Jinja2Mixins import TemplateLocateMixin
 
 class JsonHandlerMixin(object):
-    
-    def return_to_json(context):
+    def return_to_json(self, context):
         json = cjson.encode(context)
         self.write(json)
 
+class RESTHandler(JsonHandlerMixin, RequestHandler):
+    pass
+    
 class DefaultHandler(TemplateLocateMixin, JsonHandlerMixin, Jinja2HandlerMixin, RequestHandler):
     pass
+
+

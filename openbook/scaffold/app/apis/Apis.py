@@ -3,6 +3,5 @@
 # author : younger shen
 # email  : younger.x.shen@gmail.com
 
-from openbook.user.views.IndexViews import IndexHandler
+from openbook.mixins.HandlerMixins import RESTHandle
 
-urls = [('/index', IndexHandler),]

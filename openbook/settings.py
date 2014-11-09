@@ -22,6 +22,7 @@ settings = dict()
 settings['BASEDIR'] = BASEDIR
 settings['TEMPLATEDIR'] = TEMPLATEDIR
 settings['STATICDIR'] = STATICDIR
+settings['SALT']      = "are you thinking what i am thinking"
 settings['DATABASE']  = 'mysql'
 settings['DBUSER']    = 'root'
 settings['DBPASS']    = 'root'

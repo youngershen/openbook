@@ -13,9 +13,11 @@ from sqlalchemy import TEXT
 from sqlalchemy.orm import relationship, backref
 from sqlalchemy.ext.declarative import declarative_base
 from openbook.utils.DBUtils import get_session
+from openbook.utils.DBUtils import Base
+from openbook.account.models.Models import Account
 
 
-Base = declarative_base()
+#Base = declarative_base()
 
 friendship = Table(
         'user_relation', Base.metadata,
@@ -33,6 +35,7 @@ class User(Base):
     last_login = Column('last_login', TIMESTAMP, nullable=False)    
     nick_name = Column('nick_name', String(255))
     following = relationship("User", secondary=friendship, primaryjoin= id== friendship.c.left_id, secondaryjoin= id== friendship.c.right_id, backref="followed")
+    account = relationship(Account, backref='user', uselist=False)
     
 
     def __unicode__(self):

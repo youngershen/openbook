@@ -4,11 +4,11 @@
 # email  : younger.x.shen@gmail.com
 
 from openbook.mixins.HandlerMixins import DefaultHandler
-from openbook.user.Models import User
+from openbook.user.models.Models import User
 from openbook.utils.DBUtils import get_session
 from openbook.utils.CommonUtils import make_timestamp
 
-class UserIndexHandler(DefaultHandler):
+class IndexHandler(DefaultHandler):
     module_name = "user"    
     def get(self):
         #user = User(avatar="avatar", create_time=make_timestamp(), signature="sdfsdf", last_login=make_timestamp(), nick_name = 'lili')

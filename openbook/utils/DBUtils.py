@@ -6,9 +6,12 @@
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 from openbook.settings import settings
+from sqlalchemy.ext.declarative import declarative_base
 
 
 DBURL = "{dbtype}://{user}:{pwd}@{host}:{port}/{dbname}"
+
+Base = declarative_base()
 
 def get_session():
 

@@ -15,7 +15,7 @@ APPDIR = os.getcwd() + "/scaffold/app"
 
 def usage():
     print "-h for help \r"
-    print "-app appname for create a app in appname folder\r"
+    print "-a appname for create a app in appname folder\r"
 
 def version():
     print "scraffold for openbook v0.0.1"
@@ -24,7 +24,7 @@ def version():
 def parse_file(appname):
     
     content = ""
-    with open("./" + appname + "/views/IndexView.py", "r+") as f:
+    with open("./" + appname + "/views/IndexView.py", "r") as f:
         content = f.read().replace("MODULE_NAME", "'" + appname + "'")
     
     with open("./" + appname + "/views/IndexView.py", 'w') as f:
@@ -55,7 +55,6 @@ for op, value in opts:
         #create app
         create_app(value)
         sys.exit()
-
     if op == '-v':
         version()
     elif op == '-h':
