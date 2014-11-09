@@ -16,31 +16,11 @@ from openbook.utils.DBUtils import get_session
 
 
 Base = declarative_base()
-class Association(Base):
-    __tablename__ = 'association'
-    left_id = Column(Integer, ForeignKey('left.id'), primary_key=True)
-    right_id = Column(Integer, ForeignKey('right.id'), primary_key=True)
-    extra_data = Column(String(50))
-    child = relationship("Child", backref="parent_assocs")
-
-class Parent(Base):
-    __tablename__ = 'left'
-    id = Column(Integer, primary_key=True)
-    children = relationship("Association", backref="parent")
-
-class Child(Base):
-    __tablename__ = 'right'
-    id = Column(Integer, primary_key=True)
-
-class Association_table(Base):
-    __tablename__='suser_follow'
-    user_id = Column(Integer, ForeignKey('user.id'), primary_key=True)
-    follow_id = Column(Integer, ForeignKey('user.id'), primary_key=True)
 
 friendship = Table(
-        'user_follow', Base.metadata,
-        Column('user_id', Integer, ForeignKey('user.id')),
-        Column('follow_id', Integer, ForeignKey('user.id'))
+        'user_relation', Base.metadata,
+        Column('left_id', Integer, ForeignKey('user.id')),
+        Column('right_id', Integer, ForeignKey('user.id')),
         )
 
 class User(Base):
@@ -52,7 +32,8 @@ class User(Base):
     signature = Column('signature', TEXT)
     last_login = Column('last_login', TIMESTAMP, nullable=False)    
     nick_name = Column('nick_name', String(255))
-    friends = relationship("User", secondary=friendship, primaryjoin= id== friendship.c.user_id, secondaryjoin= id== friendship.c.follow_id)
-        
+    following = relationship("User", secondary=friendship, primaryjoin= id== friendship.c.left_id, secondaryjoin= id== friendship.c.right_id, backref="followed")
+    
+
     def __unicode__(self):
         return "<User(id={id}, username={username}, password={password})>".format(username=self.username, password=self.password, id=self.id)
