@@ -49,3 +49,9 @@ settings['JINJA2']['autoescape'] = True
 settings['DBCONFIG'] = dict()
 settings['DBCONFIG']['encoding'] = 'utf8'
 settings['DBCONFIG']['echo'] = DEBUG
+
+#session config
+settings['SESSION'] = dict()
+settings['SESSION']['BACKEND'] = 'mysql|redis|memcached|file' #not used yet 
+settings['SESSION']['DIR'] = BASEDIR + '/tmp/sessions/' #directory to store the session file
+
