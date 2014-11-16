@@ -9,27 +9,18 @@ import time
 import hashlib
 import os
 
-settings=dict()
-settings['SESSION'] = dict()
-settings['SESSION']['DIR'] = os.getcwd() + '/tmp/sessions'
-settings['SESSION']['SECRET_KEY'] = 'are you thinking what i am thinking'
-
-
 class YSessionManager(object):
-    settings = settings['SESSION']
+    settings = None
     sessions = dict()
 
-    def __init__(self):
-        #worm up
-        pass
-
+    def __init__(self, settings):
+        self.settings = settings
     def generateSessionID(self):
         return hashlib.md5( str(time.time()) + self.settings.get('SECRET_KEY')).hexdigest()        
 
     def serialize(self, session_id):
         session = self.sessions[session_id]
         if session is not None:
-
             with open(self.settings['DIR'] + '/' + session_id + '.session', 'w') as file:
                 pickle.dump(session, file)
 
