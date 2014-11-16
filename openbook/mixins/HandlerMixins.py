@@ -7,16 +7,40 @@ import cjson
 from tornado.web import RequestHandler
 from openbook.mixins.Jinja2Mixins import Jinja2HandlerMixin
 from openbook.mixins.Jinja2Mixins import TemplateLocateMixin
+from openbook.settings import settings
+
+#print settings['SESSION']
+manager = settings['SESSION']['MANAGER']
 
 class JsonHandlerMixin(object):
     def return_to_json(self, context):
         json = cjson.encode(context)
         self.write(json)
 
+
+class SessionHandlerMixin(object):
+    def session(self):
+        session_id = self.get_cookie('session_id')
+        if session_id is None:
+            session_id = manager.get_session()
+            self.set_cookie('session_id', session_id)
+            return session_id
+        else:
+            return session_id
+
+    def session_add(self, key, value):
+        session_id = self.session()
+        manager.session_add(session_id, key, value)
+    
+    def session_get(self, key):
+        session_id = self.session()
+        return manager.session_get(session_id, key)
+
+
 class RESTHandler(JsonHandlerMixin, RequestHandler):
     pass
     
-class DefaultHandler(TemplateLocateMixin, JsonHandlerMixin, Jinja2HandlerMixin, RequestHandler):
+class DefaultHandler(SessionHandlerMixin, TemplateLocateMixin, JsonHandlerMixin, Jinja2HandlerMixin, RequestHandler):
     pass
 
 

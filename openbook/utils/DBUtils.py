@@ -23,6 +23,6 @@ def get_session():
         port=settings['DBPORT'],\
         )
     engine = create_engine(dburl, **settings['DBCONFIG'])
-    Session = sessionmakRR(bind=engine)
+    Session = sessionmaker(bind=engine)
     session = Session()
     return session, engine

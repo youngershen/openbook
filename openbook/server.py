@@ -8,6 +8,8 @@ import tornado.web
 from settings import settings
 from openbook.mixins.Jinja2Mixins import Jinja2AppMixin
 from openbook.urls import urls
+from openbook.vendor.session.YSession import YSessionManager
+
 
 class MainApplication(Jinja2AppMixin, tornado.web.Application):
     pass

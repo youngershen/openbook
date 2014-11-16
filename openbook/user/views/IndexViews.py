@@ -21,12 +21,16 @@ class IndexHandler(DefaultHandler):
         #session.add(user)
         #session.add(user2)
         #session.commit()
-        user1 = session.query(User).filter(User.id==1).all()[0]
-        user3 = session.query(User).filter(User.id==3).all()[0]
-        user4 = session.query(User).filter(User.id==4).all()[0]
+        #user1 = session.query(User).filter(User.id==1).all()[0]
+        #user3 = session.query(User).filter(User.id==3).all()[0]
+        #user4 = session.query(User).filter(User.id==4).all()[0]
 
         #user3.following.append(user1)
         #session.commit()
-        user3_following = user3.following
-        print user4.followed[0].id
-        self.render_to_response("index.html" , dict())
+        #user3_following = user3.following
+        #print user4.followed[0].id
+        #self.session_add('username', 'younger')
+        #self.session_add('password', 'younger')
+        self.write(self.session_get('password'))
+
+        #self.render_to_response("index.html" , dict())

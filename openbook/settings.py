@@ -9,6 +9,7 @@ from jinja2 import Environment
 from jinja2 import PackageLoader
 from jinja2 import FileSystemLoader
 
+
 sys.path[0:0] = ["../"]
 BASEDIR = os.getcwd()
 TEMPLATEDIR = BASEDIR + "/templates/"
@@ -54,4 +55,5 @@ settings['DBCONFIG']['echo'] = DEBUG
 settings['SESSION'] = dict()
 settings['SESSION']['BACKEND'] = 'mysql|redis|memcached|file' #not used yet 
 settings['SESSION']['DIR'] = BASEDIR + '/tmp/sessions/' #directory to store the session file
-
+from openbook.vendor.session.YSession import YSessionManager
+settings['SESSION']['MANAGER'] = YSessionManager()
