@@ -36,7 +36,7 @@ class LoginHandler(DefaultHandler):
     module_name='account'
 
     def get(self):
-        self.write("account/login")
+        self.return_to_json(dict(name='tsest'))
 
     def post(self):
         pass
