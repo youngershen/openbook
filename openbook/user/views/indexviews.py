@@ -3,10 +3,10 @@
 # author : younger shen
 # email  : younger.x.shen@gmail.com
 
-from openbook.mixins.HandlerMixins import DefaultHandler
-from openbook.user.models.Models import User
-from openbook.utils.DBUtils import get_session
-from openbook.utils.CommonUtils import make_timestamp
+from openbook.mixins.handlermixins import DefaultHandler
+from openbook.user.models.models import User
+from openbook.utils.dbutils import get_session
+from openbook.utils.commonutils import make_timestamp
 
 class IndexHandler(DefaultHandler):
     module_name = "user"    
@@ -31,6 +31,6 @@ class IndexHandler(DefaultHandler):
         #print user4.followed[0].id
         #self.session_add('username', 'younger')
         #self.session_add('password', 'younger')
-        self.write(self.session_get('password'))
 
+        self.write('fuck')
         #self.render_to_response("index.html" , dict())

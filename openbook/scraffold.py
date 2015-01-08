@@ -23,7 +23,7 @@ def version():
 
 def parse_file(appname):
     
-    with open("./" + appname + "/views/IndexView.py") as f:
+    with open("./" + appname + "/views/indexviews.py") as f:
         content = f.read().replace("MODULE_NAME", appname)
         print content
         f.write("s")

@@ -3,10 +3,10 @@
 # author : younger shen
 # email  : younger.x.shen@gmail.com
 
-from openbook.mixins.HandlerMixins import DefaultHandler
-from openbook.utils.DBUtils import get_session
-from openbook.account.models.Models import Account
-from openbook.user.models.Models import User
+from openbook.mixins.handlermixins import DefaultHandler
+from openbook.utils.dbutils import get_session
+from openbook.account.models.models import Account
+from openbook.user.models.models import User
 
 class IndexHandler(DefaultHandler):
     module_name='account'

@@ -7,8 +7,8 @@ from sqlalchemy import *
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import relationship
 from sqlalchemy.orm import backref
-from openbook.utils.DBUtils import get_session
-from openbook.utils.DBUtils import Base
+from openbook.utils.dbutils import get_session
+from openbook.utils.dbutils import Base
 
 
 class Account(Base):

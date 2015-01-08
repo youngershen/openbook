@@ -3,6 +3,6 @@
 # author : younger shen
 # email  : younger.x.shen@gmail.com
 
-from openbook.user.views.IndexViews import IndexHandler
+from openbook.user.views.indexviews import IndexHandler
 
 urls = [('/index', IndexHandler),]

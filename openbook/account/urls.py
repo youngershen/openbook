@@ -3,9 +3,9 @@
 # author : younger shen
 # email  : younger.x.shen@gmail.com
 
-from openbook.account.views.IndexViews import IndexHandler
-from openbook.account.views.IndexViews import LoginHandler
-from openbook.account.apis.Apis import CheckUserNameAPI
+from openbook.account.views.indexviews import IndexHandler
+from openbook.account.views.indexviews import LoginHandler
+from openbook.account.apis.apis import CheckUserNameAPI
 urls  = [('/index', IndexHandler),]
 urls += [('/check_username_api', CheckUserNameAPI),]
 urls += [('/login', LoginHandler),]

@@ -3,8 +3,8 @@
 # author : younger shen
 # email  : younger.x.shen@gmail.com
 
-from openbook.mixins.HandlerMixins import RESTHandler
-from openbook.account.utils.CommonUtils import check_account
+from openbook.mixins.handlermixins import RESTHandler
+from openbook.account.utils.commonutils import check_account
 
 class CheckUserNameAPI(RESTHandler):
     def get(self):

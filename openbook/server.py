@@ -8,9 +8,9 @@ import tornado.web
 
 from settings.settings import settings
 
-from openbook.mixins.Jinja2Mixins import Jinja2AppMixin
+from openbook.mixins.jinja2mixins import Jinja2AppMixin
 from openbook.urls import urls
-from openbook.vendor.session.YSession import YSessionManager
+from openbook.vendor.session.ysession import YSessionManager
 
 settings['SESSION']['MANAGER'] = YSessionManager(settings)
 

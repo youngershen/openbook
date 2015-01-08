@@ -12,9 +12,9 @@ from sqlalchemy import TIMESTAMP
 from sqlalchemy import TEXT
 from sqlalchemy.orm import relationship, backref
 from sqlalchemy.ext.declarative import declarative_base
-from openbook.utils.DBUtils import get_session
-from openbook.utils.DBUtils import Base
-from openbook.account.models.Models import Account
+from openbook.utils.dbutils import get_session
+from openbook.utils.dbutils import Base
+from openbook.account.models.models import Account
 
 
 #Base = declarative_base()
