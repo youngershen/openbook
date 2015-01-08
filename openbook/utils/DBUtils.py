@@ -3,9 +3,12 @@
 # author : younger shen
 # email  : younger.x.shen@gmail.com
 
+import os
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
-from openbook.settings import settings
+
+from openbook.settings.settings import settings
+
 from sqlalchemy.ext.declarative import declarative_base
 
 

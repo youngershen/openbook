@@ -7,10 +7,9 @@ import cjson
 from tornado.web import RequestHandler
 from openbook.mixins.Jinja2Mixins import Jinja2HandlerMixin
 from openbook.mixins.Jinja2Mixins import TemplateLocateMixin
-from openbook.settings import settings
+from openbook.settings.settings import settings
 
-#print settings['SESSION']
-manager = settings['SESSION']['MANAGER']
+manager = settings['SESSION']['MANAGER'](settings)
 
 class JsonHandlerMixin(object):
     def return_to_json(self, context):

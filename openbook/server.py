@@ -2,22 +2,17 @@
 #-*- coding: utf-8 -*-
 # author : younger shen
 # email  : younger.x.shen@gmail.com
-import os
 
 import tornado.ioloop
 import tornado.web
 
-ENV = os.getenv('OPENBOOK_ENV_STATUS')
-
-if 'PROD' == ENV:
-    from settings.settings_prod import settings
-else:
-    from settings.settings_dev import settings
+from settings.settings import settings
 
 from openbook.mixins.Jinja2Mixins import Jinja2AppMixin
 from openbook.urls import urls
 from openbook.vendor.session.YSession import YSessionManager
 
+settings['SESSION']['MANAGER'] = YSessionManager(settings)
 
 class MainApplication(Jinja2AppMixin, tornado.web.Application):
     pass

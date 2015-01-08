@@ -4,7 +4,10 @@
 # email  : younger.x.shen@gmail.com
 import sys
 from jinja2 import Environment
-from openbook.settings import settings
+
+
+from openbook.settings.settings import settings
+
 from tornado import escape
 
 class Jinja2AppMixin(object):
