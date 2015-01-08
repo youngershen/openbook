@@ -59,4 +59,4 @@ settings['SESSION']['BACKEND'] = 'mysql|redis|memcached|file' #not used yet
 settings['SESSION']['DIR'] = BASEDIR + '/tmp/sessions' #directory to store the session file
 settings['SESSION']['SECRET_KEY'] = 'are you thinking what i am thinking'
 settings['SESSION']['EXPIRE'] = 24 * 60 * 7
-settings['SESSION']['MANAGER'] = YSessionManager(settings['SESSION'])
+
