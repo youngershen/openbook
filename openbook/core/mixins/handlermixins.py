@@ -4,12 +4,13 @@
 # email  : younger.x.shen@gmail.com
 
 import cjson
+
 from tornado.web import RequestHandler
-from openbook.mixins.jinja2mixins import Jinja2HandlerMixin
-from openbook.mixins.jinja2mixins import TemplateLocateMixin
+from openbook.core.mixins.jinja2mixins import Jinja2HandlerMixin
+from openbook.core.mixins.jinja2mixins import TemplateLocateMixin
 from openbook.settings.settings import settings
 
-manager = settings['SESSION']['MANAGER'](settings['SESSION'])
+
 
 class JsonHandlerMixin(object):
     def return_to_json(self, context):
@@ -17,7 +18,7 @@ class JsonHandlerMixin(object):
         self.set_header('Content-Type', 'application/json')
         self.write(json)
 
-
+"""
 class SessionHandlerMixin(object):
     def session(self):
         session_id = self.get_cookie('session_id')
@@ -35,12 +36,12 @@ class SessionHandlerMixin(object):
     def session_get(self, key):
         session_id = self.session()
         return manager.session_get(session_id, key)
-
+"""
 
 class RESTHandler(JsonHandlerMixin, RequestHandler):
     pass
     
-class DefaultHandler(SessionHandlerMixin, TemplateLocateMixin, JsonHandlerMixin, Jinja2HandlerMixin, RequestHandler):
+class DefaultHandler(TemplateLocateMixin, JsonHandlerMixin, Jinja2HandlerMixin, RequestHandler):
     pass
 
 

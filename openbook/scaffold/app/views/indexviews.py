@@ -3,8 +3,8 @@
 # author : younger shen
 # email  : younger.x.shen@gmail.com
 
-from openbook.mixins.handlermixins import DefaultHandler
-from openbook.utils.dbutils import get_session
+from openbook.core.mixins.handlermixins import DefaultHandler
+
 
 class IndexHandler(DefaultHandler):
     module_name=MODULE_NAME

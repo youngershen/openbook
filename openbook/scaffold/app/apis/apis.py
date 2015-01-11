@@ -3,5 +3,3 @@
 # author : younger shen
 # email  : younger.x.shen@gmail.com
 
-from openbook.mixins.HandlerMixins import RESTHandle
-
