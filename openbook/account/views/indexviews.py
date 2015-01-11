@@ -4,7 +4,7 @@
 # email  : younger.x.shen@gmail.com
 
 from openbook.mixins.handlermixins import DefaultHandler
-from openbook.utils.dbutils import get_session
+from openbook.core.utils.dbutils import get_session
 from openbook.account.models.models import Account
 from openbook.user.models.models import User
 
@@ -20,6 +20,8 @@ class IndexHandler(DefaultHandler):
         account.username = 'younger'
         account.password = 'younger'
         account.user = user
+        #self.session_add('test', 'test')
+        self.write(self.session_get('test'))
         #session.add(user)
         #session.add(account)
         #session.commit()

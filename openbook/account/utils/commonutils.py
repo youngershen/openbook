@@ -6,7 +6,7 @@
 from sqlalchemy import func
 from sqlalchemy import exists
 from openbook.account.models.models import Account
-from openbook.utils.dbutils import get_session
+from openbook.core.utils.dbutils import get_session
 
 
 session, engine = get_session()

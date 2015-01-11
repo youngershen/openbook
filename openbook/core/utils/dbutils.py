@@ -1,9 +1,9 @@
-#!/usr/bin/env python
-# -*- coding:utf-8 -*-  
-# author : younger shen
-# email  : younger.x.shen@gmail.com
+# -*- coding: utf-8 -*-
+# author  : younger shen
+# email   : younger.x.shen@gmail.com
+# project : Playwork
+# date    : 15/1/11 下午9:22
 
-import os
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 

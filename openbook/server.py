@@ -21,7 +21,7 @@ class MainApplication(Jinja2AppMixin, tornado.web.Application):
 application = MainApplication(urls,**settings['tornado'])
 
 def main():
-    application.listen(9999)
+    application.listen(settings['tornado']['port'])
     tornado.ioloop.IOLoop.instance().start()
 if __name__ == '__main__':
     main()

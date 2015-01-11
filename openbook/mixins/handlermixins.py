@@ -9,7 +9,7 @@ from openbook.mixins.jinja2mixins import Jinja2HandlerMixin
 from openbook.mixins.jinja2mixins import TemplateLocateMixin
 from openbook.settings.settings import settings
 
-manager = settings['SESSION']['MANAGER'](settings)
+manager = settings['SESSION']['MANAGER'](settings['SESSION'])
 
 class JsonHandlerMixin(object):
     def return_to_json(self, context):
