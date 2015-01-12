@@ -20,7 +20,7 @@ STATICDIR = BASEDIR + "/static/"
 
 DEBUG = True
 
-#settings
+# settings
 settings = dict()
 settings['BASEDIR'] = BASEDIR
 settings['TEMPLATEDIR'] = TEMPLATEDIR
@@ -33,7 +33,7 @@ settings['DBNAME']    = 'openbook_dev'
 settings['DBPREFIX']  = 'ob_'
 settings['DBHOST']    = '127.0.0.1'
 settings['DBPORT']    = '3306'
-#tornado
+# tornado
 settings['tornado'] = dict()
 settings['tornado']['port'] = 9999
 settings['tornado']['debug'] = DEBUG
@@ -42,19 +42,19 @@ settings['tornado']['login_url'] = '/account/login'
 settings['tornado']['xsrf_cookies'] = True
 settings['tornado']['cookie_secret'] = "are you thinking what i am thinking"
 settings['tornado']['static_path'] = STATICDIR
-#debug
+# debug
 settings['DEBUG'] = DEBUG
-#jinja2
+# jinja2
 settings['JINJA2'] = dict()
 settings['JINJA2']['loader'] = FileSystemLoader(TEMPLATEDIR) 
 settings['JINJA2']['auto_reload'] = DEBUG
 settings['JINJA2']['autoescape'] = True
-#db config
+# db config
 settings['DBCONFIG'] = dict()
 settings['DBCONFIG']['encoding'] = 'utf8'
 settings['DBCONFIG']['echo'] = DEBUG
 
-#session config
+# session config
 settings['SESSION'] = dict()
 settings['SESSION']['BACKEND'] = 'mysql|redis|memcached|file' #not used yet 
 settings['SESSION']['DIR'] = BASEDIR + '/tmp/sessions' #directory to store the session file
