@@ -7,6 +7,7 @@ import pickle
 from errors import SessionSettingsError
 from utils import generate_session_key_django
 
+
 class BaseBackend(object):
 
     def __init__(self):
@@ -30,9 +31,8 @@ class FileSessionBackendMixin(BaseBackend):
     # save
     # load
     # delete
-    # sfsdf23sfssff.session
-    def exists(self, key):
-        return os.path.exists(self.session_path)
+    def session_exists(self, session_id):
+        return os.path.exists(self.settings.get('PATH') + session_id + '.session')
 
     def create(self):
         file_path = self.settings.get('PATH', None)
@@ -40,16 +40,17 @@ class FileSessionBackendMixin(BaseBackend):
             raise SessionSettingsError("'PATH' is not in your session settings")
             exit()
 
-        key = generate_session_key_django()
+        session_id = generate_session_key_django()
         while True:
-            if not self.exists(key):
+            if not self.session_exists(session_id):
                 break
             else:
-                key = generate_session_key_django()
+                session_id = generate_session_key_django()
 
-        self.session_path = self.settings.get('PATH') + key + '.session'
+        self.session_path = self.settings.get('PATH') + session_id + '.session'
+        self.session_id = session_id
         self.save()
 
     def save(self):
         with open(self.session_path, 'w') as f:
-            pickle.dump(self, protocol=self.settings.get('COMPRESSED', 0), f)
+            pickle.dump(self, f, protocol=self.settings.get('COMPRESSED', 0))

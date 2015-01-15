@@ -3,10 +3,14 @@
 # FILE_NAME    : 
 # AUTHOR       : younger shen
 import time
+from abc import ABCMeta
 from errors import UnSafeSessionSettingError
 from errors import SessionSettingsError
+from backends import FileSessionBackendMixin
+
 
 class SessionBase(object):
+    __metaclass__ = ABCMeta
 
     def __init__(self, cache=None, expire=None, settings=None):
 
@@ -32,12 +36,14 @@ class SessionBase(object):
     def get_expire_time(self):
         return self.expire
 
-    def set_expore_time(self, time):
-        self.expire
+    def set_expire_time(self, time):
+        self.expire = time
+        self.expire_time = self.create_time + self.expire
 
     def set(self, key, value):
 
         self.cache.update({key: value})
+        self.save()
 
     def safe_set(self, key, value, force=False):
 
@@ -100,24 +106,24 @@ class SessionBase(object):
     def set_expires(self, expire):
         self.expire = expire
 
-    def load(self, key):
-        raise NotImplementedError("subclass of SessionBase must provide a load() method")
+    # def create(self):
+    #     raise NotImplementedError('subclasses of SessionBase must provide a create() method')
 
-    def exists(self, key):
-        raise NotImplementedError("subclass of SessionBase must provide a exists() method")
+    # def save(self):
+    #     raise NotImplementedError('subclasses of SessionBase must provide a save() method')
 
-    def create(self):
-        raise NotImplementedError('subclasses of SessionBase must provide a create() method')
-
-    def save(self):
-        raise NotImplementedError('subclasses of SessionBase must provide a save() method')
-
-    def load(self):
-        raise NotImplementedError('subclasses of SessionBase must provide a load() method')
+    # def load(self):
+    #     raise NotImplementedError('subclasses of SessionBase must provide a load() method')
     
-    def delete(self):
-        raise NotImplementedError('subclasses of SessionBase must provide a delete() method')
+    # def delete(self):
+    #     raise NotImplementedError('subclasses of SessionBase must provide a delete() method')
 
 
-class FileSession(SessionBase, ):
+class FileSession(SessionBase, FileSessionBackendMixin):
     pass
+
+
+if __name__ == '__main__':
+    from openbook.settings.settings import settings
+    session = FileSession(settings=settings['SESSION'])
+    print session.session_exists('2Yc12GEdVCSpLnjZbVhYBC9tvAeVi7La')
