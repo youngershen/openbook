@@ -3,28 +3,31 @@
 # FILE_NAME    : 
 # AUTHOR       : younger shen
 import time
-from openbook.core.session.errors import UnSafeSessionSettingError
-from openbook.settings import settings
-
-settings = settings['SESSION']
-
+from errors import UnSafeSessionSettingError
+from errors import SessionSettingsError
 
 class SessionBase(object):
 
-    def __init__(self, key=None, cache=None, expire=None):
+    def __init__(self, cache=None, expire=None, settings=None):
 
-        self.key = key
         self.create_time = time.time()
-
+        self.settings = settings
         if expire:
             self.expire = expire
         else:
-            self.expire = settings['EXPIRE']
+            if 'EXPIRE' not in settings:
+                raise SessionSettingsError("'EXPIRE' is not in your session settings")
+            else:
+                self.expire = settings['EXPIRE']
+
+        self.expire_time = self.create_time + self.expire
 
         if cache:
             self.cache = cache
         else:
             self.cache = dict()
+
+        self.create()
 
     def get_expire_time(self):
         return self.expire
@@ -97,6 +100,12 @@ class SessionBase(object):
     def set_expires(self, expire):
         self.expire = expire
 
+    def load(self, key):
+        raise NotImplementedError("subclass of SessionBase must provide a load() method")
+
+    def exists(self, key):
+        raise NotImplementedError("subclass of SessionBase must provide a exists() method")
+
     def create(self):
         raise NotImplementedError('subclasses of SessionBase must provide a create() method')
 
@@ -110,12 +119,5 @@ class SessionBase(object):
         raise NotImplementedError('subclasses of SessionBase must provide a delete() method')
 
 
-class SessionFile(SessionBase):
+class FileSession(SessionBase, ):
     pass
-
-
-def main():
-    pass
-
-if __name__ == '__main__':
-    main
