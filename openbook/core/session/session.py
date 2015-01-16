@@ -106,17 +106,8 @@ class SessionBase(object):
     def is_empty(self):
         return len(self.cache.key()) == 0
 
-    # def create(self):
-    #     raise NotImplementedError('subclasses of SessionBase must provide a create() method')
-
-    # def save(self):
-    #     raise NotImplementedError('subclasses of SessionBase must provide a save() method')
-
-    # def load(self):
-    #     raise NotImplementedError('subclasses of SessionBase must provide a load() method')
-    
-    # def delete(self):
-    #     raise NotImplementedError('subclasses of SessionBase must provide a delete() method')
+    def get_session_id(self):
+        return self.session_id
 
 
 class FileSession(SessionBase, FileSessionBackendMixin):

@@ -4,6 +4,7 @@
 # AUTHOR       : younger shen
 import os
 import pickle
+import cjson
 from errors import SessionSettingsError
 from utils import generate_session_key_django
 
@@ -47,10 +48,25 @@ class FileSessionBackendMixin(BaseBackend):
             else:
                 session_id = generate_session_key_django()
 
-        self.session_path = self.settings.get('PATH') + session_id + '.session'
-        self.session_id = session_id
+        setattr(self, 'session_path', self.settings.get('PATH') + session_id + '.session')
+        setattr(self, 'session_id', session_id)
         self.save()
 
     def save(self):
         with open(self.session_path, 'w') as f:
             pickle.dump(self, f, protocol=self.settings.get('COMPRESSED', 0))
+            # f.write(self.to_json())
+
+    @classmethod
+    def load(cls, session_id):
+        pass
+
+    def to_json(self):
+        json_dict = dict()
+        json_dict['session_id'] = self.session_id
+        json_dict['expire'] = self.expire
+        json_dict['expire_time'] = self.expire_time
+        json_dict['create_time'] = self.create_time
+        json_dict['settings']    = self.settings
+        json_dict['cache']       = self.cache
+        return cjson.encode(json_dict)
