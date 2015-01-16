@@ -34,11 +34,17 @@ class SessionBase(object):
         self.create()
 
     def get_expire_time(self):
+        return self.expire_time
+
+    def get_expire(self):
         return self.expire
 
-    def set_expire_time(self, time):
-        self.expire = time
+    def set_expire_time(self, ex_time):
+        self.expire = ex_time
         self.expire_time = self.create_time + self.expire
+
+    def get_create_time(self):
+        return self.create_time
 
     def set(self, key, value):
 
@@ -100,12 +106,6 @@ class SessionBase(object):
     def is_empty(self):
         return len(self.cache.key()) == 0
 
-    def get_expire(self):
-        return self.expire
-
-    def set_expires(self, expire):
-        self.expire = expire
-
     # def create(self):
     #     raise NotImplementedError('subclasses of SessionBase must provide a create() method')
 
@@ -121,9 +121,3 @@ class SessionBase(object):
 
 class FileSession(SessionBase, FileSessionBackendMixin):
     pass
-
-
-if __name__ == '__main__':
-    from openbook.settings.settings import settings
-    session = FileSession(settings=settings['SESSION'])
-    print session.session_exists('2Yc12GEdVCSpLnjZbVhYBC9tvAeVi7La')

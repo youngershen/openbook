@@ -5,6 +5,7 @@
 
 from unittest import TestCase
 from utils import generate_session_key_django
+from errors import UnSafeSessionSettingError
 from session import FileSession
 from openbook.settings.settings import settings
 
@@ -31,6 +32,7 @@ class TestFileSession(BaseFileSessionTestCase):
 
     def test_create_session(self):
         session = FileSession(settings=settings['SESSION'])
+        self.assertIsNotNone(session)
 
     def test_set_session(self):
         self.session.set('key1', 'value1')
@@ -46,8 +48,30 @@ class TestFileSession(BaseFileSessionTestCase):
         self.assertEqual(True, self.session.session_exists(self.session.session_id))
 
     def test_expire_time(self):
-        time = self.session.get_expire_time()
-        self.session.set_expire_time(11111111)
+        time = self.session.get_expire()
+        create_time = self.session.get_create_time()
+        ex_time = time + create_time
+        self.assertEqual(ex_time, self.session.get_expire_time())
+
+    def test_set_expire_time(self):
+        time = self.session.get_expire()
+        create_time = self.session.get_create_time()
+        ex_time = time + create_time
+        self.assertEqual(ex_time, self.session.get_expire_time())
+
+        self.session.set_expire_time(999)
+        self.assertEqual(self.session.get_expire_time(), self.session.get_create_time() + 999)
+
+    def test_safe_set(self):
+        self.session.set('jack', 'rose')
+        try:
+            self.session.safe_set('jack', 'lucy')
+        except UnSafeSessionSettingError as e:
+            pass
+
+        self.session.safe_set('jack', 'luck', force=True)
+        self.assertEqual('luck', self.session.get('jack'))
+
 
 class TestUtilsCase(BaseSessionTestcCase):
 
